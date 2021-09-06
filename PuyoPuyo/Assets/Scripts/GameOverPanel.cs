@@ -111,9 +111,7 @@ public class GameOverPanel : UIPanel
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
 
-            Debug.Log("loaded = " + data.highScore);
             highScore = data.highScore;
-            Debug.Log("Highscore = " + data.highScore);
         }
     }
 }

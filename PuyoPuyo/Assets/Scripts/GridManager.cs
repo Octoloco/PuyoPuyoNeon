@@ -173,7 +173,7 @@ public class GridManager : MonoBehaviour
                 startDropPhase = true;
             }
 
-            if (dropPhaseTimer <= 0)
+            if (dropPhaseTimer <= 0 && destroyIndex == 0)
             {
                 startDropPhase = false;
                 puyosToFallCount = 0;
@@ -185,25 +185,22 @@ public class GridManager : MonoBehaviour
                         {
                             puyosToFall[puyosToFallCount] = puyosArray[i, j];
                             puyosToFallCount++;
-
                         }
                     }
                 }
-
                 
                 for (int i = 0; i < puyosToFallCount; i++)
                 {
                     puyosToFall[i].Unlock();
                 }
 
-                puyosToCheckCount = 0;
-                if (numberOfUnlockedPuyos > 0 && !broadcastSent)
+                if (numberOfUnlockedPuyos > 0)
                 {
-                    broadcastSent = true;
                     for (int i = 0; i < puyosToFallCount; i++)
                     {
                         puyosToFall[i].Settle();
                     }
+                    
                 }
                 else
                 {
@@ -214,6 +211,7 @@ public class GridManager : MonoBehaviour
                     broadcastSent = false;
                     canSpawn = true;
                 }
+                puyosToCheckCount = 0;
                 dropPhaseTimer = .25f;
             }
         }
